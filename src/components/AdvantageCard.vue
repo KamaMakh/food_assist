@@ -19,7 +19,7 @@ export default {
 $poppins: "Poppins", sans-serif;
 .advantage-card {
   max-width: 100%;
-  min-width: 235px;
+  min-width: 225px;
   background: linear-gradient(217deg, #ffc600 0%, #ff742f 100%);
   border-radius: 2px;
   display: flex;

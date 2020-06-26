@@ -18,26 +18,28 @@ $poppins: 'Poppins', sans-serif;
     flex-direction: column;
     max-height: 100%;
     @media all and(max-width: 1650px) {
-      padding: 30px 20px;
+      padding: 15px 20px;
       max-width: 100%;
       overflow: auto;
     }
     @media all and(max-width: 1024px) {
-      padding: 20px 15px;
+      padding: 10px 15px;
       height: 100%;
       svg {
         max-width: 100%;
       }
     }
     @media all and(max-width: 768px) {
-      padding: 60px 15px 20px;
+      padding: 60px 15px 10px;
     }
   }
   &__header {
     z-index: 5;
     position: relative;
     flex-grow: 0 !important;
-    margin-bottom: 25px;
+    @media all and(max-width: 1024px) {
+      margin-bottom: 25px;
+    }
   }
   &__header-menu {
     padding: 0 !important;
@@ -74,7 +76,7 @@ $poppins: 'Poppins', sans-serif;
           }
         }
         @media all and(max-width: 1650px) {
-          font-size: 19px;
+          font-size: 18px;
         }
       }
     }
@@ -271,7 +273,7 @@ $poppins: 'Poppins', sans-serif;
     letter-spacing: 0px;
     color: #FFB127;
     @media all and(max-width: 1650px) {
-      font-size: 50px;
+      font-size: 45px;
     }
     @media all and(max-width: 1280px) {
       font-size: 40px;
@@ -315,7 +317,7 @@ $poppins: 'Poppins', sans-serif;
       }
     }
     @media all and(max-width: 1650px) {
-      margin-top: 30px;
+      margin-top: 10px;
     }
   }
   &__content-right {
@@ -400,10 +402,14 @@ $poppins: 'Poppins', sans-serif;
     max-width: 470px;
     .v-input__slot {
       box-shadow: 0px 3px 6px #00000029;
+      min-height: 50px !important;
     }
     fieldset {
       border-color: #ECECEC !important;
       color: #C1C1C1;
+    }
+    @media all and(max-width: 1650px) {
+      margin-top: 10px;
     }
     @media all and(max-width: 768px) {
       display: flex;
@@ -590,4 +596,38 @@ $poppins: 'Poppins', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.custom-dialog {
+  border-radius: 15px !important;
+  @media all and(max-width: 960px) {
+    max-width: 100%;
+  }
+  .v-card {
+    padding: 20px;
+    position: relative;
+    border-radius: 15px !important;
+    @media all and(max-width: 960px) {
+      padding: 20px 0 10px;
+    }
+  }
+  .headline {
+    font-size: 2rem !important;
+    margin-bottom: 10px;
+  }
+  .v-input__slot {
+    border-radius: 15px !important;
+  }
+  .close {
+    top: 5px;
+    right: 10px;
+  }
+  .v-card__text {
+    padding-bottom: 0 !important;
+  }
+}
+
+.my-alert {
+  max-width: 650px;
+  margin: 0 auto;
 }

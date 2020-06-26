@@ -24,6 +24,7 @@
           dark
           rounded
           :height="windowWidth > 1499 ? 48 : 35"
+          @click="simpleModal = true"
         >
           Позвоните мне
         </v-btn>
@@ -53,7 +54,7 @@
                 :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
                 class="food-assist__content-option"
               >
-                Будте у клиента в кармане
+                Будьте у клиента в кармане
               </div>
             </v-slide-x-transition>
             <v-scroll-x-transition hide-on-leave>
@@ -130,8 +131,8 @@
                 class="food-assist__content-text"
               >
                 Успех ресторана зависит от множества вещей. Мы предлагаем решить
-                вопрос с одной из них - с доступностью. Будте ближе к своему
-                клиенту. Будте буквально у него в кармане!
+                вопрос с одной из них - с доступностью. Будьте ближе к своему
+                клиенту. Будьте буквально у него в кармане!
               </div>
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
@@ -208,12 +209,13 @@
                     background-color="#fff"
                   ></v-textarea>
                   <v-btn
+                    rounded
                     class="food-assist__form-btn"
                     color="#FFA726"
                     dark
-                    rounded
                     :height="windowWidth > 1499 ? 58 : 35"
                     :loading="loading"
+                    @click="feedback('feedback')"
                   >
                     Отправить
                   </v-btn>
@@ -232,6 +234,7 @@
                   dark
                   color="#FFA726"
                   :height="windowWidth > 1499 ? 58 : 35"
+                  @click="simpleModal = true"
                 >
                   Заказать обратный звонок
                 </v-btn>
@@ -243,7 +246,13 @@
                 :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
                 class="food-assist__content-btn"
               >
-                <v-btn rounded dark color="#FFA726" height="58">
+                <v-btn
+                  rounded
+                  dark
+                  color="#FFA726"
+                  height="58"
+                  @click="questionModal = true"
+                >
                   Задать вопрос менеджеру
                 </v-btn>
               </div>
@@ -259,6 +268,7 @@
                   dark
                   color="#FFA726"
                   :height="windowWidth > 1499 ? 58 : 35"
+                  @click="simpleModal = true"
                 >
                   Заказать разработку
                 </v-btn>
@@ -499,7 +509,7 @@
         <v-alert
           prominent
           type="success"
-          class="my-0 mx-auto d-flex align-center justify-center"
+          class="my-0 mx-auto d-flex align-center justify-center my-alert"
         >
           <v-row align="center">
             <v-col class="grow">
@@ -509,6 +519,134 @@
         </v-alert>
       </v-sheet>
     </v-bottom-sheet>
+    <v-dialog v-model="questionModal" width="500" content-class="custom-dialog">
+      <v-card rounded width="500">
+        <v-card-title>
+          <div class="headline">
+            Задать вопрос
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="question" v-model="questionValid">
+            <v-text-field
+              v-model="questionForm.name"
+              outlined
+              light
+              height="50"
+              label="Ваше имя"
+              :rules="[rules.required]"
+              color="#FFA726"
+              background-color="#fff"
+            ></v-text-field>
+            <v-textarea
+              v-model="questionForm.question"
+              outlined
+              label="Ваш вопрос"
+              no-resize
+              color="#FFA726"
+              :rules="[rules.required]"
+              background-color="#fff"
+            ></v-textarea>
+            <v-textarea
+              v-model="questionForm.comment"
+              outlined
+              hide-details
+              no-resize
+              label="Как с Вами связаться?"
+              color="#FFA726"
+              background-color="#fff"
+            ></v-textarea>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn
+            rounded
+            color="#FFA726"
+            class="mx-auto"
+            width="200px"
+            style="margin: 0 auto"
+            dark
+            :loading="loading"
+            @click="feedback('question')"
+          >
+            Отправить
+          </v-btn>
+        </v-card-actions>
+        <v-btn
+          icon
+          absolute
+          top
+          right
+          class="close"
+          @click="questionModal = false"
+        >
+          <v-icon>
+            mdi-close
+          </v-icon>
+        </v-btn>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="simpleModal" width="500" content-class="custom-dialog">
+      <v-card rounded width="500">
+        <v-card-title>
+          <div class="headline">
+            Обратный звонок
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="simple" v-model="simpleValid">
+            <v-text-field
+              v-model="simpleForm.name"
+              outlined
+              light
+              height="50"
+              label="Ваше имя"
+              :rules="[rules.required]"
+              color="#FFA726"
+              background-color="#fff"
+            ></v-text-field>
+            <v-text-field
+              v-model="simpleForm.phone"
+              light
+              outlined
+              height="50"
+              v-mask="'+7 (###) ###-##-##'"
+              label="Телефон"
+              :rules="[rules.required]"
+              color="#FFA726"
+              background-color="#fff"
+            ></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn
+            rounded
+            color="#FFA726"
+            class="mx-auto"
+            width="200px"
+            style="margin: 0 auto"
+            dark
+            :loading="loading"
+            @click="feedback('simple')"
+          >
+            Отправить
+          </v-btn>
+        </v-card-actions>
+        <v-btn
+          icon
+          absolute
+          top
+          right
+          class="close"
+          @click="simpleModal = false"
+        >
+          <v-icon>
+            mdi-close
+          </v-icon>
+        </v-btn>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -545,11 +683,15 @@ export default {
     return {
       step: 1,
       feedbackValid: true,
+      questionValid: true,
+      simpleValid: true,
       simpleForm: {},
       questionForm: {},
       feedbackForm: {},
       loading: false,
       sheet: false,
+      questionModal: false,
+      simpleModal: false,
       rules: {
         required: value => required(value) || "Обязательно для заполнения",
         email: v => isEmail(v) || "Некорректный адрес электронной почты"
@@ -592,15 +734,20 @@ export default {
       if (type === "simple") {
         formData.append("name", this.simpleForm.name);
         formData.append("phone", this.simpleForm.phone);
+        formData.append("type", "Заказать/обратный звонок");
       } else if (type === "question") {
         formData.append("name", this.questionForm.name);
         if (this.questionForm.question)
           formData.append("question", this.questionForm.question);
+        if (this.questionForm.comment)
+          formData.append("comment", this.questionForm.comment);
         formData.append("phone", this.questionForm.comment);
+        formData.append("type", "Вопрос менеджеру");
       } else {
         formData.append("name", this.feedbackForm.name);
         formData.append("email", this.feedbackForm.email);
         formData.append("phone", this.feedbackForm.phone);
+        formData.append("type", "Напишите нам");
       }
 
       this.$store
@@ -613,9 +760,11 @@ export default {
               this.simpleForm = {};
               this.questionForm = {};
               this.feedbackForm = {};
-              this.$refs.feedback.resetValidation();
-              this.$refs.simple.resetValidation();
-              this.$refs.question.resetValidation();
+              this.questionModal = false;
+              this.simpleModal = false;
+              if (this.$refs.feedback) this.$refs.feedback.resetValidation();
+              if (this.$refs.simple) this.$refs.simple.resetValidation();
+              if (this.$refs.question) this.$refs.question.resetValidation();
             }, 2000);
           } else {
             this.snackBar.value = true;
@@ -625,9 +774,11 @@ export default {
             this.simpleForm = {};
             this.questionForm = {};
             this.feedbackForm = {};
-            this.$refs.feedback.resetValidation();
-            this.$refs.simple.resetValidation();
-            this.$refs.question.resetValidation();
+            this.questionModal = false;
+            this.simpleModal = false;
+            if (this.$refs.feedback) this.$refs.feedback.resetValidation();
+            if (this.$refs.simple) this.$refs.simple.resetValidation();
+            if (this.$refs.question) this.$refs.question.resetValidation();
           }
         })
         .catch(() => {

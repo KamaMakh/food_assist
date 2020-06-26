@@ -20,14 +20,14 @@
 }
 @media all and (max-width: 1650px) {
   .food-assist__inner {
-    padding: 30px 20px;
+    padding: 15px 20px;
     max-width: 100%;
     overflow: auto;
   }
 }
 @media all and (max-width: 1024px) {
   .food-assist__inner {
-    padding: 20px 15px;
+    padding: 10px 15px;
     height: 100%;
   }
   .food-assist__inner svg {
@@ -36,14 +36,18 @@
 }
 @media all and (max-width: 768px) {
   .food-assist__inner {
-    padding: 60px 15px 20px;
+    padding: 60px 15px 10px;
   }
 }
 .food-assist__header {
   z-index: 5;
   position: relative;
   flex-grow: 0 !important;
-  margin-bottom: 25px;
+}
+@media all and (max-width: 1024px) {
+  .food-assist__header {
+    margin-bottom: 25px;
+  }
 }
 .food-assist__header-menu {
   padding: 0 !important;
@@ -82,7 +86,7 @@
 }
 @media all and (max-width: 1650px) {
   .food-assist__header-menu li a {
-    font-size: 19px;
+    font-size: 18px;
   }
 }
 .food-assist__header-menu.burger {
@@ -289,7 +293,7 @@
 }
 @media all and (max-width: 1650px) {
   .food-assist__content-title {
-    font-size: 50px;
+    font-size: 45px;
   }
 }
 @media all and (max-width: 1280px) {
@@ -341,7 +345,7 @@
 }
 @media all and (max-width: 1650px) {
   .food-assist__content-btn {
-    margin-top: 30px;
+    margin-top: 10px;
   }
 }
 .food-assist__content-right {
@@ -459,10 +463,16 @@
 }
 .food-assist__form .v-input__slot {
   box-shadow: 0px 3px 6px #00000029;
+  min-height: 50px !important;
 }
 .food-assist__form fieldset {
   border-color: #ECECEC !important;
   color: #C1C1C1;
+}
+@media all and (max-width: 1650px) {
+  .food-assist__form {
+    margin-top: 10px;
+  }
 }
 @media all and (max-width: 768px) {
   .food-assist__form {
@@ -631,6 +641,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.custom-dialog {
+  border-radius: 15px !important;
+}
+@media all and (max-width: 960px) {
+  .custom-dialog {
+    max-width: 100%;
+  }
+}
+.custom-dialog .v-card {
+  padding: 20px;
+  position: relative;
+  border-radius: 15px !important;
+}
+@media all and (max-width: 960px) {
+  .custom-dialog .v-card {
+    padding: 20px 0 10px;
+  }
+}
+.custom-dialog .headline {
+  font-size: 2rem !important;
+  margin-bottom: 10px;
+}
+.custom-dialog .v-input__slot {
+  border-radius: 15px !important;
+}
+.custom-dialog .close {
+  top: 5px;
+  right: 10px;
+}
+.custom-dialog .v-card__text {
+  padding-bottom: 0 !important;
+}
+
+.my-alert {
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -6,7 +6,7 @@ $poppins: 'Poppins', sans-serif;
   overflow: hidden;
   font-family: $opens !important;
   position: relative;
-  @media all and(max-width: 768px) {
+  @media all and(max-width: 940px) {
     height: auto;
   }
   &__inner {
@@ -23,7 +23,7 @@ $poppins: 'Poppins', sans-serif;
       overflow: auto;
     }
     @media all and(max-width: 1024px) {
-      padding: 10px 15px;
+      padding: 10px 15px 40px;
       height: 100%;
       svg {
         max-width: 100%;
@@ -37,7 +37,7 @@ $poppins: 'Poppins', sans-serif;
     z-index: 5;
     position: relative;
     flex-grow: 0 !important;
-    @media all and(max-width: 1024px) {
+    @media all and(max-width: 1280px) {
       margin-bottom: 25px;
     }
   }
@@ -203,10 +203,11 @@ $poppins: 'Poppins', sans-serif;
       max-width: 100%;
     }
     .left-part {
-      max-width: 626px;
+      //max-width: 626px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin-bottom: 30px;
       &.form {
         max-width: 500px;
         @media all and(max-width: 768px) {
@@ -315,9 +316,6 @@ $poppins: 'Poppins', sans-serif;
         font-size: 16px !important;
         width: auto;
       }
-    }
-    @media all and(max-width: 1650px) {
-      margin-top: 10px;
     }
   }
   &__content-right {
@@ -517,6 +515,45 @@ $poppins: 'Poppins', sans-serif;
       font-family: $opens;
     }
   }
+  &__footer {
+    font-size: 12px;
+    color: #FFFFFF;
+    min-height: 40px;
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
+  }
+  &__footer-card {
+    border-radius: 0 !important;
+    z-index: 10;
+    margin-top: -40px;
+    @media all and(max-width: 768px) {
+      margin-top: 0;
+    }
+  }
+  &__footer-inner {
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &__footer-name {
+    @media all and(max-width: 480px) {
+      display: block;
+    }
+  }
+  &__burger-btn {
+    margin: 25px auto 0;
+    text-align: center;
+    .v-btn__content {
+      margin: 0 !important;
+    }
+  }
+}
+
+.bm-item-list {
+  margin-left: 0;
 }
 
 @keyframes cloud1 {
@@ -630,4 +667,20 @@ $poppins: 'Poppins', sans-serif;
 .my-alert {
   max-width: 650px;
   margin: 0 auto;
+}
+
+.bm-burger-button {
+  top: 20px !important;
+}
+
+ul.dashed {
+  list-style-type: none;
+  padding-left: 14px;
+}
+ul.dashed > li {
+  text-indent: -5px;
+}
+ul.dashed > li:before {
+  content: "-";
+  text-indent: -5px;
 }

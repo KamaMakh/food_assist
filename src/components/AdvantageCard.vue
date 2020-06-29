@@ -19,7 +19,7 @@ export default {
 $poppins: "Poppins", sans-serif;
 .advantage-card {
   max-width: 100%;
-  min-width: 225px;
+  /*min-width: 225px;*/
   background: linear-gradient(217deg, #ffc600 0%, #ff742f 100%);
   border-radius: 2px;
   display: flex;
@@ -28,7 +28,7 @@ $poppins: "Poppins", sans-serif;
   padding: 15px;
   height: 100%;
   @media all and(max-width: 1500px) {
-    min-width: 300px;
+    /*min-width: 300px;*/
     padding: 10px;
   }
   &__img {
@@ -45,14 +45,23 @@ $poppins: "Poppins", sans-serif;
     @media all and(max-width: 1500px) {
       font-size: 130px;
     }
+    @media all and(max-width: 1280px) {
+      font-size: 120px;
+    }
+    @media all and(max-width: 1024px) {
+      font-size: 100px;
+    }
   }
   &__title {
     font-size: 23px;
     text-align: center;
     color: #fff;
     font-family: $poppins;
-    @media all and(max-width: 500px) {
-      font-size: 19px;
+    @media all and(max-width: 1280px) {
+      font-size: 20px;
+    }
+    @media all and(max-width: 1024px) {
+      font-size: 18px;
     }
     span {
       line-height: 49px;

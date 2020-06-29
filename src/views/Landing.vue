@@ -1,7 +1,7 @@
 <template>
   <div class="food-assist">
     <div class="food-assist__inner">
-      <v-row v-if="windowWidth > 1280" class="mx-0 food-assist__header">
+      <v-row v-if="windowWidth > 1024" class="mx-0 food-assist__header">
         <ul class="food-assist__header-menu">
           <li>
             <a @click="step = 1" :class="{ active: step === 1 }">Главная</a>
@@ -33,7 +33,7 @@
         <v-row class="align-center flex-wrap">
           <v-col
             cols="12"
-            sm="6"
+            :sm="step === 2 ? 6 : 6"
             md="6"
             lg="5"
             class="left-part"
@@ -141,14 +141,30 @@
                 :style="{ position: step !== 3 ? 'absolute' : 'initial' }"
                 class="food-assist__content-text"
               >
-                В базовый функционал входит:<br />
-                - Создание и редактирование групп меню <br />
-                - Создание и редактирование блюда<br />
-                - Гибкая работа с добавками к блюду<br />
-                - Создание курьеров и других сотрудников<br />
-                - Просмотр финансовых данных<br />
-                - Отслеживание статуса заказа от кухни до клиента<br />
-                - Мобильное приложение для пользователя в<br />
+                В базовый функционал входит:
+                <ul class="dashed">
+                  <li>
+                    Создание и редактирование групп меню
+                  </li>
+                  <li>
+                    Создание и редактирование блюда
+                  </li>
+                  <li>
+                    Гибкая работа с добавками к блюду
+                  </li>
+                  <li>
+                    Создание курьеров и других сотрудников
+                  </li>
+                  <li>
+                    Просмотр финансовых данных
+                  </li>
+                  <li>
+                    Отслеживание статуса заказа от кухни до клиента
+                  </li>
+                  <li>
+                    Мобильное приложение для пользователя в
+                  </li>
+                </ul>
                 Apple Store и Google Play с фирменными цветами вашего Ресторана/
                 кафе и логотипом.
               </div>
@@ -250,7 +266,7 @@
                   rounded
                   dark
                   color="#FFA726"
-                  height="58"
+                  :height="windowWidth > 1499 ? 58 : 35"
                   @click="questionModal = true"
                 >
                   Задать вопрос менеджеру
@@ -276,8 +292,8 @@
             </v-scroll-x-transition>
           </v-col>
           <v-col
-            cols="12"
-            sm="6"
+            cols="6"
+            :sm="step === 2 ? 6 : 6"
             md="6"
             lg="7"
             class="right-part"
@@ -298,10 +314,13 @@
                   :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
                   class="justify-end"
                 >
-                  <v-col cols="12" sm="12" md="6" lg="3">
+                  <v-col cols="6" sm="6" md="6" lg="3">
                     <AdvantageCard>
                       <template v-slot:image>
-                        <HotDog width="117" height="117" />
+                        <HotDog
+                          :width="windowWidth < 1281 ? 100 : 117"
+                          :height="windowWidth < 1281 ? 100 : 117"
+                        />
                       </template>
                       <template v-slot:title>
                         <span>
@@ -310,10 +329,13 @@
                       </template>
                     </AdvantageCard>
                   </v-col>
-                  <v-col cols="12" sm="12" md="6" lg="3">
+                  <v-col cols="6" sm="6" md="6" lg="3">
                     <AdvantageCard>
                       <template v-slot:image>
-                        <Chicken width="117" height="87" />
+                        <Chicken
+                          :width="windowWidth < 1281 ? 100 : 117"
+                          :height="windowWidth < 1281 ? 77 : 87"
+                        />
                       </template>
                       <template v-slot:title>
                         <span>
@@ -322,10 +344,13 @@
                       </template>
                     </AdvantageCard>
                   </v-col>
-                  <v-col cols="12" sm="12" md="6" lg="3">
+                  <v-col cols="6" sm="6" md="6" lg="3">
                     <AdvantageCard>
                       <template v-slot:image>
-                        <Pizza width="156" height="132" />
+                        <Pizza
+                          :width="windowWidth < 1281 ? 130 : 156"
+                          :height="windowWidth < 1281 ? '' : 132"
+                        />
                       </template>
                       <template v-slot:title>
                         <span class="small">
@@ -334,7 +359,7 @@
                       </template>
                     </AdvantageCard>
                   </v-col>
-                  <v-col cols="12" sm="12" md="6" lg="3">
+                  <v-col cols="6" sm="6" md="6" lg="3">
                     <AdvantageCard>
                       <template v-slot:image>
                         0%
@@ -450,6 +475,23 @@
         </v-row>
       </div>
     </div>
+    <v-card
+      height="40"
+      class="food-assist__footer-card"
+      tile
+      dark
+      color="#3B3B3B"
+    >
+      <v-footer absolute class="food-assist__footer" color="#3B3B3B">
+        <v-col class="food-assist__footer-inner" cols="12">
+          <span
+            >© Copyright 2020
+            <span v-if="windowWidth > 480">Все права защищены</span></span
+          >
+          <span class="food-assist__footer-name">ERA DEVELOPMENT</span>
+        </v-col>
+      </v-footer>
+    </v-card>
     <!--    <Wave class="food-assist__wave" :width="windowWidth * 0.35" />-->
     <v-img
       class="food-assist__wave"
@@ -488,7 +530,12 @@
       id="drone"
       :width="windowWidth < 1921 ? windowWidth * 0.09 : 1920 * 0.09"
     />
-    <sl v-if="windowWidth <= 1280" right :closeOnNavigation="true">
+    <sl
+      v-if="windowWidth <= 1024"
+      :left="windowWidth > 1024"
+      :right="windowWidth <= 1024"
+      :closeOnNavigation="true"
+    >
       <ul class="food-assist__header-menu burger">
         <li>
           <a @click="step = 1" :class="{ active: step === 1 }">Главная</a>
@@ -503,6 +550,14 @@
           <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
         </li>
       </ul>
+      <v-btn
+        class="food-assist__burger-btn"
+        color="#fff"
+        outlined
+        :height="35"
+        @click="simpleModal = true"
+        >Позвоните мне
+      </v-btn>
     </sl>
     <v-bottom-sheet v-model="sheet" hide-overlay>
       <v-sheet class="text-center" height="80px" color="success">

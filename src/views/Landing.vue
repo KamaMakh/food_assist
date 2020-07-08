@@ -702,6 +702,126 @@
         </v-btn>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="videoDialog" width="750px" content-class="video-dialog">
+      <div class="video-dialog__header-wrap">
+        <v-row class="align-center video-dialog__header">
+          <v-col cols="12" sm="6" class="video-dialog__header-left">
+            Спасибо, Ваш вопрос успешно доставлен нашему менеджеру
+          </v-col>
+          <v-col cols="12" sm="6" class="video-dialog__header-right">
+            Через 10-15 минут с Вами свяжется один из наших специалистов и
+            подробно ответит на интересующий Вас вопрос.
+          </v-col>
+        </v-row>
+      </div>
+      <div class="video-dialog__body">
+        <div class="video-dialog__body-title">
+          А вы готовы узнать как увеличить количество продаж и средний чек?
+        </div>
+        <div class="video-dialog__body-sub-title">
+          Если да, предлагаем Вам мини-курс «Мобильные клиенты на всю жизнь»
+        </div>
+        <v-row style="max-width: 550px">
+          <v-col
+            cols="12"
+            sm="4"
+            md="6"
+            class="d-flex justify-center align-center"
+          >
+            <v-img
+              src="../assets/bicycle.svg"
+              style="max-width: 100%;"
+              max-width="242"
+            ></v-img>
+          </v-col>
+          <v-col cols="12" sm="8" md="6">
+            <div class="video-dialog__body-about-title">
+              БЛАГОДАРЯ ЭТОМУ КУРСУ ВЫ:
+            </div>
+            <div class="video-dialog__body-about-options">
+              Узнаете: <br /><br />
+              - Как такие компании как Старбакс, ПапаДжонс и другие внедрили в
+              свой Бизнес мобильные приложения Увеличили продажи на 200%<br /><br />
+              - Как увеличить продажи с помощью Собственного мобильного
+              приложения.<br /><br />
+              - Как с помощью мобильного приложения Увеличить средний чек.<br /><br />
+              - Как подобрать команду для разработки Своего мобильного
+              приложения.<br /><br />
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+      <div class="video-dialog__footer">
+        <v-row class="align-center justify-center" style="margin: 0">
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            class="text-center d-flex align-center flex-column"
+          >
+            <div class="video-dialog__footer-img">
+              <v-img
+                src="../assets/elon_musk_royal_society.jpg"
+                width="70"
+                height="70"
+              >
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+            </div>
+            <div class="video-dialog__footer-name">
+              Роман Давыдов
+            </div>
+            <div class="video-dialog__footer-company">
+              Директор компании <br />
+              ООО «ЕРА»
+            </div>
+          </v-col>
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            class="text-center d-flex align-center flex-column"
+          >
+            <div class="video-dialog__footer-sale">
+              ОБЫЧНАЯ ЦЕНА 1890 ₽
+            </div>
+            <div class="video-dialog__footer-price">
+              ВАША ЦЕНА 190 ₽
+            </div>
+            <div class="video-dialog__footer-price-title">
+              Предложение доступно еще:
+            </div>
+            <div class="video-dialog__footer-timer">{{ seconds }} СЕКУНД</div>
+          </v-col>
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            class="text-center d-flex align-center justify-center flex-column"
+          >
+            <div class="video-dialog__footer-btn">
+              ОСВОИТЬ ТЕХНИКУ ПРОДАЖ ЧЕРЕЗ МОБИЛЬНОЕ ПРИЛОЖЕНИЕ
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+      <v-btn icon absolute top right class="close" @click="videoDialog = false">
+        <v-icon>
+          mdi-close
+        </v-icon>
+      </v-btn>
+    </v-dialog>
   </div>
 </template>
 
@@ -737,6 +857,7 @@ export default {
   data() {
     return {
       step: 1,
+      videoDialog: false,
       feedbackValid: true,
       questionValid: true,
       simpleValid: true,
@@ -747,6 +868,7 @@ export default {
       sheet: false,
       questionModal: false,
       simpleModal: false,
+      seconds: 300,
       rules: {
         required: value => required(value) || "Обязательно для заполнения",
         email: v => isEmail(v) || "Некорректный адрес электронной почты"
@@ -863,6 +985,27 @@ export default {
     setTimeout(() => {
       this.balloonPosition(70, 30);
     });
+  },
+  watch: {
+    step(value) {
+      console.log(value);
+      let pageName = "";
+      if (value === 1) {
+        pageName = "Главная";
+      } else if (value === 2) {
+        pageName = "Преимущества";
+      } else if (value === 3) {
+        pageName = "Цены";
+      } else if (value === 4) {
+        pageName = "Контакты";
+      }
+      console.log(pageName);
+      /* eslint-disable-next-line */
+      ym(57324937, "hit", "/", {
+        title: pageName,
+        referer: document.referrer
+      });
+    }
   }
 };
 </script>

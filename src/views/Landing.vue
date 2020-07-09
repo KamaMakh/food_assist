@@ -4,18 +4,18 @@
       <v-row v-if="windowWidth > 1024" class="mx-0 food-assist__header">
         <ul class="food-assist__header-menu">
           <li>
-            <a @click="step = 1" :class="{ active: step === 1 }">Главная</a>
+            <a @click="step = 1" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 1 }">Главная</a>
           </li>
           <li>
-            <a @click="step = 2" :class="{ active: step === 2 }"
+            <a @click="step = 2" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 2 }"
               >Преимущества
             </a>
           </li>
           <li>
-            <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
+            <a @click="step = 3" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 3 }">Цены</a>
           </li>
           <li>
-            <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
+            <a @click="step = 4" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 4 }">Контакты</a>
           </li>
         </ul>
         <v-btn

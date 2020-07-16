@@ -3,19 +3,19 @@
     <div class="food-assist__inner">
       <v-row v-if="windowWidth > 1024" class="mx-0 food-assist__header">
         <ul class="food-assist__header-menu">
-          <li>
-            <a @click="step = 1" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 1 }">Главная</a>
+          <li v-scroll-to="'#main'">
+            <a @click="step = 1" :class="{ active: step === 1 }">Главная</a>
           </li>
-          <li>
-            <a @click="step = 2" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 2 }"
+          <li v-scroll-to="'#advantage'">
+            <a @click="step = 2" :class="{ active: step === 2 }"
               >Преимущества
             </a>
           </li>
-          <li>
-            <a @click="step = 3" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 3 }">Цены</a>
+          <li v-scroll-to="'#price'">
+            <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
           </li>
-          <li>
-            <a @click="step = 4" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 4 }">Контакты</a>
+          <li v-scroll-to="'#contacts'">
+            <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
           </li>
         </ul>
         <v-btn
@@ -29,118 +29,168 @@
           Позвоните мне
         </v-btn>
       </v-row>
-      <div class="food-assist__content">
-        <v-row class="align-center flex-wrap">
-          <v-col
-            cols="12"
-            :sm="step === 2 ? 6 : 6"
-            md="6"
-            lg="5"
-            class="left-part"
-            :class="{ form: step === 4 }"
-          >
+      <perfect-scrollbar class="food-assist__content" id="container">
+        <!--step 1-->
+        <v-row class="align-center flex-wrap food-assist__section" id="main">
+          <v-col cols="12" sm="6" md="6" lg="5" class="left-part">
             <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 1"
-                :style="{ position: step !== 1 ? 'absolute' : 'initial' }"
-                class="food-assist__content-option"
-              >
+              <div class="food-assist__content-option">
                 Мобильное приложение в АРЕНДУ для
               </div>
             </v-scroll-x-transition>
-            <v-slide-x-transition hide-on-leave>
-              <div
-                v-show="step === 2"
-                :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
-                class="food-assist__content-option"
-              >
-                Будьте у клиента в кармане
-              </div>
-            </v-slide-x-transition>
             <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 3"
-                :style="{ position: step !== 3 ? 'absolute' : 'initial' }"
-                class="food-assist__content-option"
-              >
-                Базовый функционал + остальное
-              </div>
-            </v-scroll-x-transition>
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 4"
-                :style="{ position: step !== 4 ? 'absolute' : 'initial' }"
-                class="food-assist__content-option"
-              >
-                Если у Вас остались вопросы
-              </div>
-            </v-scroll-x-transition>
-
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 1"
-                :style="{ position: step !== 1 ? 'absolute' : 'initial' }"
-                class="food-assist__content-title"
-              >
+              <div class="food-assist__content-title">
                 Кафе и ресторанов
               </div>
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 2"
-                :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
-                class="food-assist__content-title"
-              >
+              <div class="food-assist__content-text">
+                Food Assistant помогает быстро создать мобильное приложение для
+                Вашего кафе, ресторана или столовой. Всего за 2 недели и от 7
+                625. Руб.в месяц
+              </div>
+            </v-scroll-x-transition>
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-btn">
+                <v-btn
+                  rounded
+                  dark
+                  color="#FFA726"
+                  :height="windowWidth > 1499 ? 58 : 35"
+                  @click="simpleModal = true"
+                >
+                  Заказать обратный звонок
+                </v-btn>
+              </div>
+            </v-scroll-x-transition>
+          </v-col>
+          <v-col cols="6" md="6" lg="7" class="right-part">
+            <div class="food-assist__content-right">
+              <v-scroll-x-reverse-transition hide-on-leave>
+                <Courier
+                  :height="windowWidth > 1920 ? 1115 * 0.8 : windowHeight * 0.8"
+                  class="food-assist__courier"
+                />
+              </v-scroll-x-reverse-transition>
+            </div>
+          </v-col>
+        </v-row>
+        <!--step 2-->
+        <v-row
+          class="align-center flex-wrap food-assist__section"
+          id="advantage"
+        >
+          <v-col cols="12" :sm="6" md="6" lg="5" class="left-part">
+            <v-slide-x-transition hide-on-leave>
+              <div class="food-assist__content-option">
+                Будьте у клиента в кармане
+              </div>
+            </v-slide-x-transition>
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-title">
                 Лучше остальных
               </div>
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 3"
-                :style="{ position: step !== 3 ? 'absolute' : 'initial' }"
-                class="food-assist__content-title"
-              >
-                Сколько это стоит?
-              </div>
-            </v-scroll-x-transition>
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 4"
-                :style="{ position: step !== 4 ? 'absolute' : 'initial' }"
-                class="food-assist__content-title"
-              >
-                Напишите нам
-              </div>
-            </v-scroll-x-transition>
-
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 1"
-                :style="{ position: step !== 1 ? 'absolute' : 'initial' }"
-                class="food-assist__content-text"
-              >
-                Food Assistant помогает быстро создать мобильное приложение для
-                Вашего кафе, ресторана или цветочного магазина. Всего за 2
-                недели и от 7 625. Руб.в месяц
-              </div>
-            </v-scroll-x-transition>
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 2"
-                :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
-                class="food-assist__content-text"
-              >
+              <div class="food-assist__content-text">
                 Успех ресторана зависит от множества вещей. Мы предлагаем решить
                 вопрос с одной из них - с доступностью. Будьте ближе к своему
                 клиенту. Будьте буквально у него в кармане!
               </div>
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 3"
-                :style="{ position: step !== 3 ? 'absolute' : 'initial' }"
-                class="food-assist__content-text"
-              >
+              <div class="food-assist__content-btn">
+                <v-btn
+                  rounded
+                  dark
+                  color="#FFA726"
+                  :height="windowWidth > 1499 ? 58 : 35"
+                  @click="questionModal = true"
+                >
+                  Задать вопрос менеджеру
+                </v-btn>
+              </div>
+            </v-scroll-x-transition>
+          </v-col>
+          <v-col cols="6" :sm="6" md="6" lg="7" class="right-part slider">
+            <div class="food-assist__content-right">
+              <v-scroll-x-reverse-transition hide-on-leave>
+                <v-row class="justify-end">
+                  <v-col cols="6" sm="6" md="6" lg="3">
+                    <AdvantageCard>
+                      <template v-slot:image>
+                        <HotDog
+                          :width="windowWidth < 1281 ? 100 : 117"
+                          :height="windowWidth < 1281 ? 100 : 117"
+                        />
+                      </template>
+                      <template v-slot:title>
+                        <span>
+                          Всегда актуальное меню
+                        </span>
+                      </template>
+                    </AdvantageCard>
+                  </v-col>
+                  <v-col cols="6" sm="6" md="6" lg="3">
+                    <AdvantageCard>
+                      <template v-slot:image>
+                        <Chicken
+                          :width="windowWidth < 1281 ? 100 : 117"
+                          :height="windowWidth < 1281 ? 77 : 87"
+                        />
+                      </template>
+                      <template v-slot:title>
+                        <span>
+                          Обновление в 2 Клика
+                        </span>
+                      </template>
+                    </AdvantageCard>
+                  </v-col>
+                  <v-col cols="6" sm="6" md="6" lg="3">
+                    <AdvantageCard>
+                      <template v-slot:image>
+                        <Pizza
+                          :width="windowWidth < 1281 ? 130 : 156"
+                          :height="windowWidth < 1281 ? '' : 132"
+                        />
+                      </template>
+                      <template v-slot:title>
+                        <span class="small">
+                          Высокое удержание Клиентов. Скидки И Акции
+                        </span>
+                      </template>
+                    </AdvantageCard>
+                  </v-col>
+                  <v-col cols="6" sm="6" md="6" lg="3">
+                    <AdvantageCard>
+                      <template v-slot:image>
+                        0%
+                      </template>
+                      <template v-slot:title>
+                        <span>Нет комиссии за Каждый заказ</span>
+                      </template>
+                    </AdvantageCard>
+                  </v-col>
+                </v-row>
+              </v-scroll-x-reverse-transition>
+            </div>
+          </v-col>
+        </v-row>
+        <!--step 3-->
+        <v-row class="align-center flex-wrap food-assist__section" id="price">
+          <v-col cols="12" :sm="6" md="6" lg="5" class="left-part">
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-option">
+                Базовый функционал + остальное
+              </div>
+            </v-scroll-x-transition>
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-title">
+                Сколько это стоит?
+              </div>
+            </v-scroll-x-transition>
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-text">
                 В базовый функционал входит:
                 <ul class="dashed">
                   <li>
@@ -165,17 +215,54 @@
                     Мобильное приложение для пользователя в
                   </li>
                 </ul>
-                Apple Store и Google Play с фирменными цветами вашего Ресторана/
-                кафе и логотипом.
+                Apple Store и Google Play с фирменными цветами вашего
+                Ресторана/кафе и логотипом.
               </div>
             </v-scroll-x-transition>
-
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-btn">
+                <v-btn
+                  rounded
+                  dark
+                  color="#FFA726"
+                  :height="windowWidth > 1499 ? 58 : 35"
+                  @click="simpleModal = true"
+                >
+                  Заказать разработку
+                </v-btn>
+              </div>
+            </v-scroll-x-transition>
+          </v-col>
+          <v-col cols="6" :sm="6" md="6" lg="7" class="right-part">
+            <div class="food-assist__content-right">
+              <v-scroll-x-reverse-transition hide-on-leave>
+                <div class="step3-right">
+                  <span class="first">от</span>
+                  <span class="second">7 625</span>
+                  <span class="third">руб./мес.</span>
+                </div>
+              </v-scroll-x-reverse-transition>
+            </div>
+          </v-col>
+        </v-row>
+        <!--        step 4-->
+        <v-row
+          class="align-center flex-wrap food-assist__section"
+          id="contacts"
+        >
+          <v-col cols="12" :sm="6" md="6" lg="5" class="left-part form">
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-option">
+                Если у Вас остались вопросы
+              </div>
+            </v-scroll-x-transition>
+            <v-scroll-x-transition hide-on-leave>
+              <div class="food-assist__content-title">
+                Напишите нам
+              </div>
+            </v-scroll-x-transition>
             <v-scroll-x-reverse-transition hide-on-leave>
-              <div
-                v-show="step === 4"
-                :style="{ position: step !== 4 ? 'absolute' : 'initial' }"
-                class="step3-right"
-              >
+              <div class="step3-right">
                 <v-form
                   ref="feedback"
                   class="food-assist__form"
@@ -238,156 +325,11 @@
                 </v-form>
               </div>
             </v-scroll-x-reverse-transition>
-
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 1"
-                :style="{ position: step !== 1 ? 'absolute' : 'initial' }"
-                class="food-assist__content-btn"
-              >
-                <v-btn
-                  rounded
-                  dark
-                  color="#FFA726"
-                  :height="windowWidth > 1499 ? 58 : 35"
-                  @click="simpleModal = true"
-                >
-                  Заказать обратный звонок
-                </v-btn>
-              </div>
-            </v-scroll-x-transition>
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 2"
-                :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
-                class="food-assist__content-btn"
-              >
-                <v-btn
-                  rounded
-                  dark
-                  color="#FFA726"
-                  :height="windowWidth > 1499 ? 58 : 35"
-                  @click="questionModal = true"
-                >
-                  Задать вопрос менеджеру
-                </v-btn>
-              </div>
-            </v-scroll-x-transition>
-            <v-scroll-x-transition hide-on-leave>
-              <div
-                v-show="step === 3"
-                :style="{ position: step !== 3 ? 'absolute' : 'initial' }"
-                class="food-assist__content-btn"
-              >
-                <v-btn
-                  rounded
-                  dark
-                  color="#FFA726"
-                  :height="windowWidth > 1499 ? 58 : 35"
-                  @click="simpleModal = true"
-                >
-                  Заказать разработку
-                </v-btn>
-              </div>
-            </v-scroll-x-transition>
           </v-col>
-          <v-col
-            cols="6"
-            :sm="step === 2 ? 6 : 6"
-            md="6"
-            lg="7"
-            class="right-part"
-            :class="{ form: step === 4, slider: step === 2 }"
-          >
+          <v-col cols="6" :sm="6" md="6" lg="7" class="right-part form">
             <div class="food-assist__content-right">
-              <v-scroll-x-reverse-transition hide-on-leave>
-                <Courier
-                  v-show="step === 1"
-                  :style="{ position: step !== 1 ? 'absolute' : 'initial' }"
-                  :height="windowWidth > 1920 ? 1115 * 0.8 : windowHeight * 0.8"
-                  class="food-assist__courier"
-                />
-              </v-scroll-x-reverse-transition>
-              <v-scroll-x-reverse-transition hide-on-leave>
-                <v-row
-                  v-show="step === 2"
-                  :style="{ position: step !== 2 ? 'absolute' : 'initial' }"
-                  class="justify-end"
-                >
-                  <v-col cols="6" sm="6" md="6" lg="3">
-                    <AdvantageCard>
-                      <template v-slot:image>
-                        <HotDog
-                          :width="windowWidth < 1281 ? 100 : 117"
-                          :height="windowWidth < 1281 ? 100 : 117"
-                        />
-                      </template>
-                      <template v-slot:title>
-                        <span>
-                          Всегда актуальное меню
-                        </span>
-                      </template>
-                    </AdvantageCard>
-                  </v-col>
-                  <v-col cols="6" sm="6" md="6" lg="3">
-                    <AdvantageCard>
-                      <template v-slot:image>
-                        <Chicken
-                          :width="windowWidth < 1281 ? 100 : 117"
-                          :height="windowWidth < 1281 ? 77 : 87"
-                        />
-                      </template>
-                      <template v-slot:title>
-                        <span>
-                          Обновление в 2 Клика
-                        </span>
-                      </template>
-                    </AdvantageCard>
-                  </v-col>
-                  <v-col cols="6" sm="6" md="6" lg="3">
-                    <AdvantageCard>
-                      <template v-slot:image>
-                        <Pizza
-                          :width="windowWidth < 1281 ? 130 : 156"
-                          :height="windowWidth < 1281 ? '' : 132"
-                        />
-                      </template>
-                      <template v-slot:title>
-                        <span class="small">
-                          Высокое удержание Клиентов. Скидки И Акции
-                        </span>
-                      </template>
-                    </AdvantageCard>
-                  </v-col>
-                  <v-col cols="6" sm="6" md="6" lg="3">
-                    <AdvantageCard>
-                      <template v-slot:image>
-                        0%
-                      </template>
-                      <template v-slot:title>
-                        <span>Нет комиссии за Каждый заказ</span>
-                      </template>
-                    </AdvantageCard>
-                  </v-col>
-                </v-row>
-              </v-scroll-x-reverse-transition>
-              <v-scroll-x-reverse-transition hide-on-leave>
-                <div
-                  v-show="step === 3"
-                  :style="{ position: step !== 3 ? 'absolute' : 'initial' }"
-                  class="step3-right"
-                >
-                  <span class="first">от</span>
-                  <span class="second">7 625</span>
-                  <span class="third">руб./мес.</span>
-                </div>
-              </v-scroll-x-reverse-transition>
               <v-scroll-x-transition hide-on-leave>
-                <div
-                  v-if="windowWidth > 760"
-                  v-show="step === 4"
-                  class="food-assist__contacts"
-                >
+                <div v-if="windowWidth > 760" class="food-assist__contacts">
                   <div class="food-assist__contact">
                     <div class="food-assist__contact-title phone">
                       Телефон
@@ -426,7 +368,7 @@
                     </div>
                   </div>
                 </div>
-                <div v-else v-show="step === 4" class="food-assist__contacts">
+                <div v-else class="food-assist__contacts">
                   <v-card class="mx-auto" max-width="500">
                     <v-card-text>
                       <div class="food-assist__contact">
@@ -473,7 +415,7 @@
             </div>
           </v-col>
         </v-row>
-      </div>
+      </perfect-scrollbar>
     </div>
     <v-card
       height="40"
@@ -537,16 +479,36 @@
       :closeOnNavigation="true"
     >
       <ul class="food-assist__header-menu burger">
-        <li>
+        <li
+          v-scroll-to="{
+            el: '#main',
+            container: 'body'
+          }"
+        >
           <a @click="step = 1" :class="{ active: step === 1 }">Главная</a>
         </li>
-        <li>
+        <li
+          v-scroll-to="{
+            el: '#advantage',
+            container: 'body'
+          }"
+        >
           <a @click="step = 2" :class="{ active: step === 2 }">Преимущества </a>
         </li>
-        <li>
+        <li
+          v-scroll-to="{
+            el: '#price',
+            container: 'body'
+          }"
+        >
           <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
         </li>
-        <li>
+        <li
+          v-scroll-to="{
+            el: '#contacts',
+            container: 'body'
+          }"
+        >
           <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
         </li>
       </ul>
@@ -876,6 +838,16 @@ export default {
     };
   },
   methods: {
+    getScrollOption(el) {
+      if (this.windowWidth > 1023) {
+        return {
+          el: el,
+          container: "#container"
+        };
+      } else {
+        return el;
+      }
+    },
     balloonPosition() {
       let balloon = document.getElementById("balloon"),
         newLeft = Math.random() * 100,
@@ -988,7 +960,6 @@ export default {
   },
   watch: {
     step(value) {
-      console.log(value);
       let pageName = "";
       if (value === 1) {
         pageName = "Главная";
@@ -999,7 +970,6 @@ export default {
       } else if (value === 4) {
         pageName = "Контакты";
       }
-      console.log(pageName);
       /* eslint-disable-next-line */
       ym(57324937, "hit", "/", {
         title: pageName,

@@ -194,8 +194,11 @@ $poppins: 'Poppins', sans-serif;
     position: relative;
     z-index: 5;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    //justify-content: center;
     flex-grow: 1;
+    overflow: auto;
     @media all and(max-width: 768px) {
       align-items: flex-start;
     }
@@ -208,6 +211,7 @@ $poppins: 'Poppins', sans-serif;
       flex-direction: column;
       justify-content: center;
       margin-bottom: 30px;
+      padding-left: 20px !important;
       &.form {
         max-width: 500px;
         @media all and(max-width: 768px) {
@@ -218,6 +222,7 @@ $poppins: 'Poppins', sans-serif;
         justify-content: flex-start;
         margin: 0 auto 25px;
         width: 100%;
+        padding-left: 12px !important;
       }
     }
     .right-part {
@@ -301,6 +306,11 @@ $poppins: 'Poppins', sans-serif;
     }
     @media all and(max-width: 1024px) {
       font-size: 14px;
+    }
+    ul {
+      li {
+        margin: 5px 0;
+      }
     }
   }
   &__content-btn {
@@ -548,6 +558,18 @@ $poppins: 'Poppins', sans-serif;
     text-align: center;
     .v-btn__content {
       margin: 0 !important;
+    }
+  }
+  &__section {
+    margin: 100px 0 !important;
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+    &:first-child {
+      margin-top: 0 !important;
+    }
+    @media all and(max-width: 960px) {
+      margin: 50px 0 !important;
     }
   }
 }

@@ -4,18 +4,18 @@
       <v-row v-if="windowWidth > 1024" class="mx-0 food-assist__header">
         <ul class="food-assist__header-menu">
           <li>
-            <a @click="step = 1" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 1 }">Главная</a>
+            <a @click="step = 1" :class="{ active: step === 1 }">Главная</a>
           </li>
           <li>
-            <a @click="step = 2" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 2 }"
+            <a @click="step = 2" :class="{ active: step === 2 }"
               >Преимущества
             </a>
           </li>
           <li>
-            <a @click="step = 3" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 3 }">Цены</a>
+            <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
           </li>
           <li>
-            <a @click="step = 4" onclick='FB.AppEvents.logEvent("buttonClicked")' :class="{ active: step === 4 }">Контакты</a>
+            <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
           </li>
         </ul>
         <v-btn
@@ -957,6 +957,8 @@ export default {
             if (this.$refs.simple) this.$refs.simple.resetValidation();
             if (this.$refs.question) this.$refs.question.resetValidation();
           }
+          // eslint-disable-next-line no-undef
+          ym(65299861, "reachGoal", "sendMail998");
         })
         .catch(() => {
           this.snackBar.value = true;
@@ -988,18 +990,22 @@ export default {
   },
   watch: {
     step(value) {
-      console.log(value);
       let pageName = "";
       if (value === 1) {
         pageName = "Главная";
       } else if (value === 2) {
         pageName = "Преимущества";
+        // eslint-disable-next-line no-undef
+        ym(65299861, "reachGoal", "openAdvantage");
       } else if (value === 3) {
         pageName = "Цены";
+        // eslint-disable-next-line no-undef
+        ym(65299861, "reachGoal", "openPrice");
       } else if (value === 4) {
         pageName = "Контакты";
+        // eslint-disable-next-line no-undef
+        ym(65299861, "reachGoal", "openContacts");
       }
-      console.log(pageName);
       /* eslint-disable-next-line */
       ym(57324937, "hit", "/", {
         title: pageName,

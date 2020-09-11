@@ -610,6 +610,9 @@
 .food-assist__burger-btn .v-btn__content {
   margin: 0 !important;
 }
+.food-assist__pics .v-image {
+  margin: 0 auto;
+}
 
 .bm-item-list {
   margin-left: 0;

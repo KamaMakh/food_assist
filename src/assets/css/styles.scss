@@ -550,6 +550,11 @@ $poppins: 'Poppins', sans-serif;
       margin: 0 !important;
     }
   }
+  &__pics {
+    .v-image {
+      margin: 0 auto;
+    }
+  }
 }
 
 .bm-item-list {

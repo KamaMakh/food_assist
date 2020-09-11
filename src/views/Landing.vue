@@ -15,7 +15,12 @@
             <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
           </li>
           <li>
-            <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
+            <a @click="step = 4" :class="{ active: step === 4 }"
+              >Наше приложение</a
+            >
+          </li>
+          <li>
+            <a @click="step = 5" :class="{ active: step === 5 }">Контакты</a>
           </li>
         </ul>
         <v-btn
@@ -33,11 +38,11 @@
         <v-row class="align-center flex-wrap">
           <v-col
             cols="12"
-            :sm="step === 2 ? 6 : 6"
-            md="6"
-            lg="5"
+            :sm="step === 4 ? 12 : 6"
+            :md="step === 4 ? 12 : 6"
+            :lg="step === 4 ? 12 : 4"
             class="left-part"
-            :class="{ form: step === 4 }"
+            :class="{ form: step === 5 }"
           >
             <v-scroll-x-transition hide-on-leave>
               <div
@@ -67,9 +72,126 @@
               </div>
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
-              <div
+              <v-row
                 v-show="step === 4"
                 :style="{ position: step !== 4 ? 'absolute' : 'initial' }"
+                class="align-center flex-wrap food-assist__section"
+                id="pics"
+              >
+                <v-col
+                  class="food-assist__pics text-center"
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  lg="3"
+                >
+                  <v-img
+                    class="elevation-1"
+                    src="../assets/pic1.png"
+                    :max-width="windowWidth > 1280 ? 300 : 340"
+                    contain
+                  >
+                    <template v-slot:placeholder>
+                      <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                      >
+                        <v-progress-circular
+                          indeterminate
+                          color="grey lighten-5"
+                        ></v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+                </v-col>
+                <v-col
+                  class="food-assist__pics text-center"
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  lg="3"
+                >
+                  <v-img
+                    class="elevation-1"
+                    src="../assets/pic2.png"
+                    :max-width="windowWidth > 1280 ? 300 : 340"
+                    contain
+                  >
+                    <template v-slot:placeholder>
+                      <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                      >
+                        <v-progress-circular
+                          indeterminate
+                          color="grey lighten-5"
+                        ></v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+                </v-col>
+                <v-col
+                  class="food-assist__pics text-center"
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  lg="3"
+                >
+                  <v-img
+                    class="elevation-1"
+                    src="../assets/pic3.png"
+                    :max-width="windowWidth > 1280 ? 300 : 340"
+                    contain
+                  >
+                    <template v-slot:placeholder>
+                      <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                      >
+                        <v-progress-circular
+                          indeterminate
+                          color="grey lighten-5"
+                        ></v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+                </v-col>
+                <v-col
+                  class="food-assist__pics text-center"
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  lg="3"
+                >
+                  <v-img
+                    class="elevation-1"
+                    src="../assets/pic4.png"
+                    :max-width="windowWidth > 1280 ? 300 : 340"
+                    contain
+                  >
+                    <template v-slot:placeholder>
+                      <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                      >
+                        <v-progress-circular
+                          indeterminate
+                          color="grey lighten-5"
+                        ></v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+                </v-col>
+              </v-row>
+            </v-scroll-x-transition>
+            <v-scroll-x-transition hide-on-leave>
+              <div
+                v-show="step === 5"
+                :style="{ position: step !== 5 ? 'absolute' : 'initial' }"
                 class="food-assist__content-option"
               >
                 Если у Вас остались вопросы
@@ -105,8 +227,8 @@
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
               <div
-                v-show="step === 4"
-                :style="{ position: step !== 4 ? 'absolute' : 'initial' }"
+                v-show="step === 5"
+                :style="{ position: step !== 5 ? 'absolute' : 'initial' }"
                 class="food-assist__content-title"
               >
                 Напишите нам
@@ -173,8 +295,8 @@
 
             <v-scroll-x-reverse-transition hide-on-leave>
               <div
-                v-show="step === 4"
-                :style="{ position: step !== 4 ? 'absolute' : 'initial' }"
+                v-show="step === 5"
+                :style="{ position: step !== 5 ? 'absolute' : 'initial' }"
                 class="step3-right"
               >
                 <v-form
@@ -293,12 +415,13 @@
             </v-scroll-x-transition>
           </v-col>
           <v-col
+            v-if="step !== 4"
             cols="6"
-            :sm="step === 2 ? 6 : 6"
+            sm="6"
             md="6"
             lg="7"
             class="right-part"
-            :class="{ form: step === 4, slider: step === 2 }"
+            :class="{ form: step === 5, slider: step === 2 }"
           >
             <div class="food-assist__content-right">
               <v-scroll-x-reverse-transition hide-on-leave>
@@ -386,7 +509,7 @@
               <v-scroll-x-transition hide-on-leave>
                 <div
                   v-if="windowWidth > 760"
-                  v-show="step === 4"
+                  v-show="step === 5"
                   class="food-assist__contacts"
                 >
                   <div class="food-assist__contact">
@@ -427,7 +550,7 @@
                     </div>
                   </div>
                 </div>
-                <div v-else v-show="step === 4" class="food-assist__contacts">
+                <div v-else v-show="step === 5" class="food-assist__contacts">
                   <v-card class="mx-auto" max-width="500">
                     <v-card-text>
                       <div class="food-assist__contact">
@@ -515,7 +638,7 @@
       :width="windowWidth < 1921 ? windowWidth * 0.17 : 1920 * 0.17"
     />
     <Background
-      v-show="step !== 4"
+      v-show="step !== 5"
       class="food-assist__back"
       id="back"
       :width="windowWidth < 1921 ? windowWidth * 0.65 : 1920 * 0.65"
@@ -527,7 +650,7 @@
     />
     <Drone
       class="food-assist__drone"
-      :class="{ centered: step === 4 }"
+      :class="{ centered: step === 5 }"
       id="drone"
       :width="windowWidth < 1921 ? windowWidth * 0.09 : 1920 * 0.09"
     />
@@ -548,7 +671,7 @@
           <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
         </li>
         <li>
-          <a @click="step = 4" :class="{ active: step === 4 }">Контакты</a>
+          <a @click="step = 5" :class="{ active: step === 5 }">Контакты</a>
         </li>
       </ul>
       <v-btn
@@ -1002,7 +1125,7 @@ export default {
         pageName = "Цены";
         // eslint-disable-next-line no-undef
         ym(65299861, "reachGoal", "openPrice");
-      } else if (value === 4) {
+      } else if (value === 5) {
         pageName = "Контакты";
         // eslint-disable-next-line no-undef
         ym(65299861, "reachGoal", "openContacts");

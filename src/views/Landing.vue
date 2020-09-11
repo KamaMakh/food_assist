@@ -671,6 +671,11 @@
           <a @click="step = 3" :class="{ active: step === 3 }">Цены</a>
         </li>
         <li>
+          <a @click="step = 4" :class="{ active: step === 4 }"
+            >Наше приложение</a
+          >
+        </li>
+        <li>
           <a @click="step = 5" :class="{ active: step === 5 }">Контакты</a>
         </li>
       </ul>
@@ -796,6 +801,12 @@
               color="#FFA726"
               background-color="#fff"
             ></v-text-field>
+            <v-checkbox
+              v-model="checkbox"
+              color="#FFA726"
+              label="Я хочу увеличить продажи и средний чек"
+              :rules="[rules.required]"
+            ></v-checkbox>
           </v-form>
         </v-card-text>
         <v-card-actions class="justify-center">
@@ -805,7 +816,8 @@
             class="mx-auto"
             width="200px"
             style="margin: 0 auto"
-            dark
+            :dark="checkbox"
+            :disabled="!checkbox"
             :loading="loading"
             @click="feedback('simple')"
           >
@@ -935,7 +947,12 @@
             class="text-center d-flex align-center justify-center flex-column"
           >
             <div class="video-dialog__footer-btn">
-              ОСВОИТЬ ТЕХНИКУ ПРОДАЖ ЧЕРЕЗ МОБИЛЬНОЕ ПРИЛОЖЕНИЕ
+              <a
+                target="_blank"
+                href="https://www.youtube.com/watch?v=cDmBkQ_hC0U"
+              >
+                ОСВОИТЬ ТЕХНИКУ ПРОДАЖ ЧЕРЕЗ МОБИЛЬНОЕ ПРИЛОЖЕНИЕ
+              </a>
             </div>
           </v-col>
         </v-row>
@@ -996,7 +1013,8 @@ export default {
       rules: {
         required: value => required(value) || "Обязательно для заполнения",
         email: v => isEmail(v) || "Некорректный адрес электронной почты"
-      }
+      },
+      checkbox: false
     };
   },
   methods: {
@@ -1083,6 +1101,8 @@ export default {
           }
           // eslint-disable-next-line no-undef
           ym(65299861, "reachGoal", "sendMail998");
+          this.videoDialog = true;
+          this.checkbox = false;
         })
         .catch(() => {
           this.snackBar.value = true;
@@ -1125,6 +1145,10 @@ export default {
         pageName = "Цены";
         // eslint-disable-next-line no-undef
         ym(65299861, "reachGoal", "openPrice");
+      } else if (value === 4) {
+        pageName = "Наше приложение";
+        // eslint-disable-next-line no-undef
+        ym(65299861, "reachGoal", "openApp");
       } else if (value === 5) {
         pageName = "Контакты";
         // eslint-disable-next-line no-undef

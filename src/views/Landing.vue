@@ -119,9 +119,10 @@
                 :style="{ position: step !== 1 ? 'absolute' : 'initial' }"
                 class="food-assist__content-text"
               >
-                Food Assistant помогает быстро создать мобильное приложение для
-                Вашего кафе, ресторана или цветочного магазина. Всего за 2
-                недели и от 7 625. Руб.в месяц
+                Вашему бизнесу необходимо мобильное приложение для доставки?
+                Отслеживать заказы? Быстро передавать их на кухню? Интегрировать
+                систему с IIKO? Позвоните нам и мы расскажем как сделать всё это
+                за 7625 руб. в месяц.
               </div>
             </v-scroll-x-transition>
             <v-scroll-x-transition hide-on-leave>
@@ -324,7 +325,7 @@
                       </template>
                       <template v-slot:title>
                         <span>
-                          Всегда актуальное меню
+                          Программа лояльности для клиентов
                         </span>
                       </template>
                     </AdvantageCard>
@@ -339,8 +340,18 @@
                       </template>
                       <template v-slot:title>
                         <span>
-                          Обновление в 2 Клика
+                          Обновление меню в 2 клика
                         </span>
+                      </template>
+                    </AdvantageCard>
+                  </v-col>
+                  <v-col cols="6" sm="6" md="6" lg="3">
+                    <AdvantageCard>
+                      <template v-slot:image>
+                        0%
+                      </template>
+                      <template v-slot:title>
+                        <span>Нет комиссии за Каждый заказ</span>
                       </template>
                     </AdvantageCard>
                   </v-col>
@@ -356,16 +367,6 @@
                         <span class="small">
                           Высокое удержание Клиентов. Скидки И Акции
                         </span>
-                      </template>
-                    </AdvantageCard>
-                  </v-col>
-                  <v-col cols="6" sm="6" md="6" lg="3">
-                    <AdvantageCard>
-                      <template v-slot:image>
-                        0%
-                      </template>
-                      <template v-slot:title>
-                        <span>Нет комиссии за Каждый заказ</span>
                       </template>
                     </AdvantageCard>
                   </v-col>

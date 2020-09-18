@@ -549,6 +549,22 @@
                       <div>Россия, Новосибирск, ул. Николаева, 12</div>
                     </div>
                   </div>
+                  <div class="food-assist__contact">
+                    <div class="food-assist__contact-title pl-0">
+                      Наименование
+                    </div>
+                    <div class="food-assist__contact-text">
+                      <div>ООО "СТЕФАНО"</div>
+                    </div>
+                  </div>
+                  <div class="food-assist__contact">
+                    <div class="food-assist__contact-title pl-0">
+                      ИНН
+                    </div>
+                    <div class="food-assist__contact-text">
+                      <div>7702421789</div>
+                    </div>
+                  </div>
                 </div>
                 <div v-else v-show="step === 5" class="food-assist__contacts">
                   <v-card class="mx-auto" max-width="500">
@@ -588,6 +604,22 @@
                         </div>
                         <div class="food-assist__contact-text">
                           <div>Россия, Новосибирск, ул. Николаева, 12</div>
+                        </div>
+                      </div>
+                      <div class="food-assist__contact">
+                        <div class="food-assist__contact-title pl-0">
+                          Наименование
+                        </div>
+                        <div class="food-assist__contact-text">
+                          <div>ООО "СТЕФАНО"</div>
+                        </div>
+                      </div>
+                      <div class="food-assist__contact">
+                        <div class="food-assist__contact-title pl-0">
+                          ИНН
+                        </div>
+                        <div class="food-assist__contact-text">
+                          <div>7702421789</div>
                         </div>
                       </div>
                     </v-card-text>

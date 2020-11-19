@@ -833,12 +833,6 @@
               color="#FFA726"
               background-color="#fff"
             ></v-text-field>
-            <v-checkbox
-              v-model="checkbox"
-              color="#FFA726"
-              label="Я хочу увеличить продажи и средний чек"
-              :rules="[rules.required]"
-            ></v-checkbox>
           </v-form>
         </v-card-text>
         <v-card-actions class="justify-center">
@@ -848,8 +842,7 @@
             class="mx-auto"
             width="200px"
             style="margin: 0 auto"
-            :dark="checkbox"
-            :disabled="!checkbox"
+            dark
             :loading="loading"
             @click="feedback('simple')"
           >
@@ -1133,7 +1126,7 @@ export default {
           }
           // eslint-disable-next-line no-undef
           ym(65299861, "reachGoal", "sendMail998");
-          this.videoDialog = true;
+          // this.videoDialog = true;
           this.checkbox = false;
         })
         .catch(() => {
